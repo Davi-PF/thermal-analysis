@@ -1,4 +1,4 @@
-const { analisarArquivo } = require("../../services/analysisService");
+const { analisarArquivo } = require("../../src/services/analysisService");
 const xlsx = require("xlsx");
 
 jest.mock("xlsx");

@@ -5,7 +5,7 @@ const {
   compararLigas,
   carregarCurvas,
   compararDuasLigas
-} = require('../../services/curvasService'); // AJUSTAR ESTE CAMINHO
+} = require('../../src/services/curvasService'); // AJUSTAR ESTE CAMINHO
 
 const xlsx = require('xlsx');
 
@@ -368,7 +368,7 @@ describe('CurvasService - Testes Completos', () => {
       ];
       
       // Simular compararLigas retornando dados específicos
-      const mockCompararLigas = jest.spyOn(require('../../services/curvasService'), 'compararLigas');
+      const mockCompararLigas = jest.spyOn(require('../../src/services/curvasService'), 'compararLigas');
       mockCompararLigas.mockReturnValue({
         detalhes: [
           { liga: 'Liga1', max: 100, min: 80, media: 90, taxaResfriamento: -2 },
@@ -403,7 +403,7 @@ describe('CurvasService - Testes Completos', () => {
 
     test('deve lançar erro quando uma das ligas retorna undefined', () => {
       // Simular caso onde find() retorna undefined
-      const mockCompararLigas = jest.spyOn(require('../../services/curvasService'), 'compararLigas');
+      const mockCompararLigas = jest.spyOn(require('../../src/services/curvasService'), 'compararLigas');
       mockCompararLigas.mockReturnValue({
         detalhes: [
           { liga: 'Liga1', max: 100, min: 80, taxaResfriamento: -2 }
@@ -419,7 +419,7 @@ describe('CurvasService - Testes Completos', () => {
     });
 
     test('deve lidar com media undefined nos detalhes', () => {
-      const mockCompararLigas = jest.spyOn(require('../../services/curvasService'), 'compararLigas');
+      const mockCompararLigas = jest.spyOn(require('../../src/services/curvasService'), 'compararLigas');
       mockCompararLigas.mockReturnValue({
         detalhes: [
           { liga: 'Liga1', max: 100, min: 80, taxaResfriamento: -2 }, // sem media

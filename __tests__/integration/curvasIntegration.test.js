@@ -2,8 +2,8 @@ const request = require("supertest");
 const app = require("../../app"); // seu app principal
 
 // Mock dos services
-const curvasService = require("../../services/curvasService");
-jest.mock("../../services/curvasService");
+const curvasService = require("../../src/services/curvasService");
+jest.mock("../../src/services/curvasService.js");
 
 describe("Testes de integração - /curvas", () => {
   // Dados mock de sucesso
@@ -44,7 +44,7 @@ describe("Testes de integração - /curvas", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(mockTodasLigas);
-    expect(curvasService.analisarCurvas).toHaveBeenCalledWith("data/Curvas estudo.xlsx");
+    expect(curvasService.analisarCurvas).toHaveBeenCalledWith("./src/data/Curvas estudo.xlsx");
   });
 
   it("GET /curvas/:liga deve retornar dados da liga", async () => {
@@ -65,7 +65,7 @@ describe("Testes de integração - /curvas", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(mockTodasLigas);
-    expect(curvasService.compararLigas).toHaveBeenCalledWith("data/Curvas estudo.xlsx");
+    expect(curvasService.compararLigas).toHaveBeenCalledWith("./src/data/Curvas estudo.xlsx");
   });
 
   it("GET /curvas/comparar/:liga1/:liga2 deve retornar comparação entre duas ligas", async () => {
@@ -75,7 +75,7 @@ describe("Testes de integração - /curvas", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(mockComparacao);
-    expect(curvasService.compararDuasLigas).toHaveBeenCalledWith("817176", "817156", "data/Curvas estudo.xlsx");
+    expect(curvasService.compararDuasLigas).toHaveBeenCalledWith("817176", "817156", "./src/data/Curvas estudo.xlsx");
   });
 
   // ========================
